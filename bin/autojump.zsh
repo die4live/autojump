@@ -32,9 +32,9 @@ fi
 # change pwd hook
 autojump_chpwd() {
     if [[ -f "${AUTOJUMP_ERROR_PATH}" ]]; then
-        autojump --add "$(pwd)" >/dev/null 2>>${AUTOJUMP_ERROR_PATH} &!
+        command autojump --add "$(pwd)" >/dev/null 2>>${AUTOJUMP_ERROR_PATH} &!
     else
-        autojump --add "$(pwd)" >/dev/null &!
+        command autojump --add "$(pwd)" >/dev/null &!
     fi
 }
 
@@ -45,7 +45,7 @@ chpwd_functions+=autojump_chpwd
 # default autojump command
 j() {
     if [[ ${1} == -* ]] && [[ ${1} != "--" ]]; then
-        autojump ${@}
+        command autojump ${@}
         return
     fi
 
@@ -66,10 +66,10 @@ j() {
 # jump to child directory (subdirectory of current path)
 jc() {
     if [[ ${1} == -* ]] && [[ ${1} != "--" ]]; then
-        autojump ${@}
+        command autojump ${@}
         return
     else
-        j $(pwd) ${@}
+        command autojump $(pwd) ${@}
     fi
 }
 
@@ -77,7 +77,7 @@ jc() {
 # open autojump results in file browser
 jo() {
     if [[ ${1} == -* ]] && [[ ${1} != "--" ]]; then
-        autojump ${@}
+        command autojump ${@}
         return
     fi
 
@@ -110,9 +110,9 @@ jo() {
 # open autojump results (child directory) in file browser
 jco() {
     if [[ ${1} == -* ]] && [[ ${1} != "--" ]]; then
-        autojump ${@}
+        command autojump ${@}
         return
     else
-        jo $(pwd) ${@}
+        command jo $(pwd) ${@}
     fi
 }
